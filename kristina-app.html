@@ -7,41 +7,59 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--black:#0d0d0d;--white:#ffffff;--bg:#f5f4f2;--surface:#ffffff;--rule:#e2e0db;--rule-strong:#c8c4bc;--muted:#8a8680;--ink:#1a1916;--label:#6a6660;}
+:root{
+  --black:#0d0d0d;
+  --white:#ffffff;
+  --bg:#f7f6f3;
+  --surface:#ffffff;
+  --rule:#e4e2dc;
+  --rule-strong:#ccc9c0;
+  --muted:#9a9e9c;
+  --ink:#1a1916;
+  --label:#6b7270;
+  --green:#1e3a32;
+  --green-mid:#2d5246;
+  --slate:#6b7270;
+  --grey-mid:#9a9e9c;
+  --grey-light:#d4d4d0;
+}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;font-size:13px;line-height:1.5;-webkit-font-smoothing:antialiased}
 
-#apigate{position:fixed;inset:0;background:var(--black);display:flex;align-items:center;justify-content:center;z-index:9999}
-.gate-box{background:#161614;border:0.5px solid #2a2a2a;border-radius:8px;padding:36px 40px;max-width:440px;width:100%}
-.gate-logo{font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:#4a4844;margin-bottom:4px}
-.gate-name{font-size:20px;font-weight:500;color:#fff;margin-bottom:2px}
-.gate-sub{font-size:11px;color:#5a5652;margin-bottom:24px}
-.gate-label{font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:#6a6660;display:block;margin-bottom:6px;font-weight:500}
-.gate-input{width:100%;background:#0d0d0d;border:0.5px solid #2a2a2a;color:#e8e4de;font-family:'DM Sans',sans-serif;font-size:12px;padding:10px 12px;border-radius:4px;outline:none;margin-bottom:8px}
-.gate-input:focus{border-color:#5a5652}
-.gate-hint{font-size:10px;color:#4a4844;line-height:1.6;margin-bottom:16px}
-.gate-hint a{color:#6a6660;text-decoration:underline}
+#apigate{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:9999}
+.gate-box{background:var(--white);border:0.5px solid var(--rule);border-radius:8px;padding:40px 44px;max-width:460px;width:100%;box-shadow:0 4px 40px rgba(0,0,0,0.06)}
+.gate-logo-mark{margin-bottom:24px}
+.gate-logo-name{font-size:28px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--black);line-height:1;display:block}
+.gate-logo-name span{font-weight:300;letter-spacing:0.06em;display:block;font-size:18px;color:var(--slate);margin-top:2px}
+.gate-logo-dots{display:flex;gap:6px;margin-top:10px}
+.gate-dot{width:10px;height:10px;border-radius:50%}
+.gate-sub{font-size:11px;color:var(--muted);margin-bottom:28px;margin-top:16px;padding-top:16px;border-top:0.5px solid var(--rule)}
+.gate-label{font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;font-weight:500}
+.gate-input{width:100%;background:var(--bg);border:0.5px solid var(--rule);color:var(--ink);font-family:'DM Sans',sans-serif;font-size:12px;padding:10px 12px;border-radius:4px;outline:none;margin-bottom:8px;transition:border-color 0.1s}
+.gate-input:focus{border-color:var(--green)}
+.gate-hint{font-size:10px;color:var(--muted);line-height:1.65;margin-bottom:16px}
+.gate-hint a{color:var(--green);text-decoration:none;border-bottom:0.5px solid var(--green)}
 .gate-remember{display:flex;align-items:center;gap:7px;margin-bottom:16px}
-.gate-remember input{width:14px;height:14px;accent-color:#888;cursor:pointer}
-.gate-remember label{font-size:10px;color:#6a6660;cursor:pointer}
-.gate-btn{width:100%;background:#fff;color:#0d0d0d;border:none;padding:10px;font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;cursor:pointer;border-radius:3px}
+.gate-remember input{width:14px;height:14px;accent-color:var(--green);cursor:pointer}
+.gate-remember label{font-size:10px;color:var(--muted);cursor:pointer}
+.gate-btn{width:100%;background:var(--green);color:#fff;border:none;padding:11px;font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;cursor:pointer;border-radius:3px;transition:opacity 0.1s}
 .gate-btn:hover{opacity:0.88}
-.gate-err{font-size:10px;color:#e07070;margin-top:8px;display:none}
+.gate-err{font-size:10px;color:#904040;margin-top:8px;display:none;background:#fff5f5;padding:7px 10px;border-radius:3px;border:0.5px solid #f0c0c0}
 
-.masthead{background:var(--black);color:#fff;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
-.mh-left{padding:14px 20px;border-right:1px solid #2a2a2a}
-.mh-eyebrow{font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:#5a5652;margin-bottom:1px}
-.mh-date{font-size:11px;color:#7a7672;font-weight:300}
+.masthead{background:var(--green);color:#fff;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;border-bottom:none}
+.mh-left{padding:14px 20px;border-right:1px solid rgba(255,255,255,0.12)}
+.mh-eyebrow{font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:1px}
+.mh-date{font-size:11px;color:rgba(255,255,255,0.55);font-weight:300}
 .mh-center{text-align:center;padding:14px 28px}
-.mh-name{font-size:20px;font-weight:500;letter-spacing:0.02em;color:#fff;line-height:1}
-.mh-roles{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5a5652;margin-top:4px}
-.mh-right{padding:12px 20px;border-left:1px solid #2a2a2a;text-align:right}
-.mh-motto{font-size:10px;color:#7a7672;line-height:1.55;max-width:190px;margin-left:auto;font-weight:300;font-style:italic}
-.mh-attr{font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#4a4844;margin-top:3px}
+.mh-name{font-size:20px;font-weight:500;letter-spacing:0.04em;color:#fff;line-height:1;text-transform:uppercase}
+.mh-roles{font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-top:5px}
+.mh-right{padding:12px 20px;border-left:1px solid rgba(255,255,255,0.12);text-align:right}
+.mh-motto{font-size:10px;color:rgba(255,255,255,0.55);line-height:1.55;max-width:190px;margin-left:auto;font-weight:300;font-style:italic}
+.mh-attr{font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-top:3px}
 
 .topnav{background:var(--white);border-bottom:1px solid var(--rule);display:flex;align-items:center;padding:0 20px;overflow-x:auto}
 .tnav-btn{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);background:none;border:none;border-bottom:2px solid transparent;padding:10px 12px;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:400;transition:all 0.1s;margin-bottom:-1px;white-space:nowrap}
-.tnav-btn:hover{color:var(--ink)}
-.tnav-btn.on{color:var(--ink);border-bottom-color:var(--black)}
+.tnav-btn:hover{color:var(--green)}
+.tnav-btn.on{color:var(--green);border-bottom-color:var(--green)}
 .tnav-sep{width:1px;height:12px;background:var(--rule);margin:0 2px;flex-shrink:0}
 
 .body{display:grid;grid-template-columns:188px 1fr;min-height:calc(100vh - 88px)}
@@ -76,11 +94,11 @@ select{appearance:none;cursor:pointer}
 .g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-bottom:12px}
 .field{margin-bottom:12px}
 
-.btn-run{font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;background:var(--black);color:#fff;border:none;padding:9px 20px;cursor:pointer;border-radius:3px;font-weight:500;transition:opacity 0.1s}
+.btn-run{font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;background:var(--green);color:#fff;border:none;padding:9px 20px;cursor:pointer;border-radius:3px;font-weight:500;transition:opacity 0.1s}
 .btn-run:hover{opacity:0.82}
 .btn-run:disabled{opacity:0.3;cursor:not-allowed}
 .btn-out{font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;background:none;color:var(--muted);border:0.5px solid var(--rule);padding:8px 16px;cursor:pointer;border-radius:3px;font-weight:400;transition:all 0.1s}
-.btn-out:hover{border-color:var(--black);color:var(--ink)}
+.btn-out:hover{border-color:var(--green);color:var(--green)}
 .btn-danger{font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;background:none;color:#c05050;border:0.5px solid #f0c0c0;padding:6px 12px;cursor:pointer;border-radius:3px;font-weight:400}
 .btn-danger:hover{background:#fff5f5}
 .brow{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:4px}
@@ -93,15 +111,15 @@ select{appearance:none;cursor:pointer}
 .step-row{display:flex;align-items:flex-start;gap:9px;padding:6px 0;border-bottom:0.5px solid var(--rule);font-size:11px;color:var(--muted);font-weight:300}
 .step-row.done{color:var(--ink)}
 .step-dot{width:5px;height:5px;border-radius:50%;background:var(--rule);flex-shrink:0;margin-top:4px;transition:background 0.2s}
-.step-dot.done{background:var(--black)}
-.step-dot.run{background:var(--black);animation:pu 0.9s ease-in-out infinite}
+.step-dot.done{background:var(--green)}
+.step-dot.run{background:var(--green);animation:pu 0.9s ease-in-out infinite}
 @keyframes pu{0%,100%{opacity:1}50%{opacity:0.25}}
 .fw-badge{font-size:8px;letter-spacing:0.09em;text-transform:uppercase;color:var(--muted);border:0.5px solid var(--rule);padding:1px 5px;margin-left:5px;border-radius:2px;vertical-align:middle}
 
 .output-block{background:var(--surface);border:0.5px solid var(--rule);border-radius:6px;padding:18px 20px;margin-top:12px;white-space:pre-wrap;font-size:13px;line-height:1.85;color:var(--ink);position:relative;min-height:80px;font-weight:300}
 .output-empty{color:var(--muted);font-style:italic;font-weight:300;font-size:12px}
 .copy-lnk{position:absolute;top:10px;right:12px;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);background:none;border:0.5px solid var(--rule);padding:3px 8px;cursor:pointer;border-radius:2px;font-family:'DM Sans',sans-serif}
-.copy-lnk:hover{color:var(--ink);border-color:var(--black)}
+.copy-lnk:hover{color:var(--green);border-color:var(--green)}
 
 .intel-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
 .ic{background:var(--surface);border:0.5px solid var(--rule);border-radius:5px;padding:13px 15px}
@@ -110,15 +128,15 @@ select{appearance:none;cursor:pointer}
 .ic p,.ic li,.ic-full p,.ic-full li{font-size:11px;color:var(--ink);line-height:1.72}
 .ic ul,.ic-full ul{padding-left:13px}
 .ic li,.ic-full li{margin-bottom:2px}
-.score-display{background:var(--black);border-radius:6px;padding:16px 20px;margin-top:12px;display:flex;align-items:flex-start;gap:24px}
+.score-display{background:var(--green);border-radius:6px;padding:16px 20px;margin-top:12px;display:flex;align-items:flex-start;gap:24px}
 .score-big{font-size:46px;color:#fff;line-height:1;font-weight:300;letter-spacing:-0.03em}
-.score-lbl{font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#5a5652;margin-top:2px}
+.score-lbl{font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-top:2px}
 .sbars{flex:1;margin-top:4px}
 .srow{display:flex;align-items:center;gap:8px;margin-bottom:6px}
-.slbl{font-size:9px;letter-spacing:0.07em;text-transform:uppercase;color:#6a6660;width:76px;flex-shrink:0}
-.strk{flex:1;height:1px;background:#2a2a2a;position:relative}
-.sfil{position:absolute;left:0;top:-0.5px;height:2px;background:#e0ddd8;transition:width 0.9s ease}
-.snum{font-size:11px;color:#c8c4bc;width:26px;text-align:right;font-weight:300}
+.slbl{font-size:9px;letter-spacing:0.07em;text-transform:uppercase;color:rgba(255,255,255,0.55);width:76px;flex-shrink:0}
+.strk{flex:1;height:1px;background:rgba(255,255,255,0.2);position:relative}
+.sfil{position:absolute;left:0;top:-0.5px;height:2px;background:rgba(255,255,255,0.8);transition:width 0.9s ease}
+.snum{font-size:11px;color:rgba(255,255,255,0.7);width:26px;text-align:right;font-weight:300}
 .kw-tag{display:inline-block;font-size:9px;letter-spacing:0.09em;text-transform:uppercase;color:var(--label);border:0.5px solid var(--rule);padding:2px 8px;margin:0 4px 5px 0;border-radius:2px}
 .pos-block{background:var(--surface);border:0.5px solid var(--rule);border-radius:5px;padding:14px 16px;margin-top:10px}
 .pos-hed{font-size:9px;letter-spacing:0.13em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;font-weight:500}
@@ -130,9 +148,9 @@ select{appearance:none;cursor:pointer}
 .fw-tabs{display:flex;gap:0;border-bottom:1px solid var(--rule-strong);margin-bottom:14px}
 .fw-tab{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;background:none;border:none;border-bottom:2px solid transparent;padding:8px 12px;cursor:pointer;color:var(--muted);font-family:'DM Sans',sans-serif;font-weight:400;margin-bottom:-1px;transition:all 0.1s}
 .fw-tab:hover{color:var(--ink)}
-.fw-tab.on{color:var(--black);border-bottom-color:var(--black);font-weight:500}
+.fw-tab.on{color:var(--green);border-bottom-color:var(--green);font-weight:500}
 .fw-panel{display:none}.fw-panel.on{display:block}
-.pullquote{border-left:2px solid var(--black);padding:10px 15px;margin:12px 0;font-size:13px;color:var(--ink);line-height:1.65;font-weight:300;font-style:italic}
+.pullquote{border-left:2px solid var(--green);padding:10px 15px;margin:12px 0;font-size:13px;color:var(--ink);line-height:1.65;font-weight:300;font-style:italic}
 .pullquote cite{display:block;font-style:normal;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:5px;font-weight:400}
 
 /* ── TRACKER ── */
@@ -201,14 +219,21 @@ canvas.prob-canvas{width:100%;height:120px;display:block}
 
 <div id="apigate">
   <div class="gate-box">
-    <div class="gate-logo">Application Intelligence OS</div>
-    <div class="gate-name">Kristina Lenkowsky</div>
-    <div class="gate-sub">Enter your Anthropic API key to continue</div>
+    <div class="gate-logo-mark">
+      <span class="gate-logo-name">KRISTINA<span>LENKOWSKY</span></span>
+      <div class="gate-logo-dots">
+        <div class="gate-dot" style="background:#1e3a32"></div>
+        <div class="gate-dot" style="background:#6b7270"></div>
+        <div class="gate-dot" style="background:#9a9e9c"></div>
+        <div class="gate-dot" style="background:#d4d4d0"></div>
+      </div>
+    </div>
+    <div class="gate-sub">Application Intelligence OS — enter your Anthropic API key to continue</div>
     <label class="gate-label">Anthropic API Key</label>
     <input class="gate-input" type="password" id="apikey-input" placeholder="sk-ant-…" autocomplete="off"/>
-    <div class="gate-hint">Stored only in your browser — never sent anywhere except directly to Anthropic's API.<br><br>Get a key at <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a> → API Keys → Create Key.</div>
+    <div class="gate-hint">Stored only in your browser — never sent anywhere except directly to Anthropic's API. Get a key at <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a> → API Keys → Create Key.</div>
     <div class="gate-remember"><input type="checkbox" id="remember" checked/><label for="remember">Remember on this device</label></div>
-    <button class="gate-btn" onclick="unlockApp()">Open My Command Center</button>
+    <button class="gate-btn" onclick="unlockApp()">Open Command Center</button>
     <div class="gate-err" id="gate-err">Key must start with sk-ant- and be at least 40 characters.</div>
   </div>
 </div>
@@ -241,6 +266,8 @@ canvas.prob-canvas{width:100%;height:120px;display:block}
   <button class="tnav-btn" onclick="goNav('frameworks',this)">Frameworks</button>
   <div class="tnav-sep"></div>
   <button class="tnav-btn" onclick="goNav('profile',this)">Profile</button>
+  <div class="tnav-sep"></div>
+  <button class="tnav-btn" onclick="goNav('kb',this)">Knowledge Base</button>
 </nav>
 
 <div class="body">
@@ -314,7 +341,18 @@ canvas.prob-canvas{width:100%;height:120px;display:block}
     </div>
     <div class="card">
       <div class="card-hed">Job posting</div>
-      <div class="field"><textarea id="jp" placeholder="Paste the full posting. Boilerplate, culture language, and word choice all contain signal. The system reads all of it."></textarea></div>
+      <div class="field">
+        <label>Paste job URL for autofill</label>
+        <div style="display:flex;gap:8px;align-items:center">
+          <input type="text" id="job-url" placeholder="https://linkedin.com/jobs/… or any job posting URL" style="flex:1" onpaste="handleURLPaste(event)" onkeydown="if(event.key==='Enter')fetchJobURL()"/>
+          <button class="btn-out" onclick="fetchJobURL()" id="url-btn" style="white-space:nowrap;flex-shrink:0">Fetch Posting</button>
+        </div>
+        <div id="url-status" style="font-size:10px;color:var(--muted);margin-top:4px;min-height:16px"></div>
+      </div>
+      <div class="field">
+        <label>Or paste full posting text directly</label>
+        <textarea id="jp" placeholder="Paste the full job description here — or use the URL fetch above to autofill. Boilerplate, culture language, and word choice all contain signal." onpaste="handlePostingPaste(event)"></textarea>
+      </div>
       <div class="field"><label>Specific emphasis or notes</label><input type="text" id="em" placeholder="e.g. international scope, reports to Managing Director, budget authority"/></div>
     </div>
     <div class="brow">
@@ -327,7 +365,7 @@ canvas.prob-canvas{width:100%;height:120px;display:block}
       <div class="step-row"><div class="step-dot" id="sd1"></div><span>Power position &amp; principal-agent risks <span class="fw-badge">PA Theory</span></span></div>
       <div class="step-row"><div class="step-dot" id="sd2"></div><span>Competitive positioning <span class="fw-badge">Strategy</span></span></div>
       <div class="step-row"><div class="step-dot" id="sd3"></div><span>Cover letter — voice-locked</span></div>
-      <div class="step-row"><div class="step-dot" id="sd4"></div><span>Strategy synthesis</span></div>
+      <div class="step-row"><div class="step-dot" id="sd4"></div><span>AI pattern scrub — final polish</span></div>
     </div>
     <div class="alert" id="galert"></div>
   </div>
@@ -435,6 +473,34 @@ canvas.prob-canvas{width:100%;height:120px;display:block}
         <div class="ic"><div class="ic-hed">Conversion reality</div><p>$90k NYC finance/law ops: 100 applications → 15 screens → 5 final rounds → 1–2 offers. Normal. This tool handles quality. You need a system for volume too.</p></div>
       </div>
     </div>
+  </div>
+
+  <!-- KNOWLEDGE BASE -->
+  <div class="panel" id="panel-kb">
+    <div class="phead"><div class="phead-name">Knowledge Base</div><div class="phead-desc">Your writing. Your voice. Fed into every letter generation.</div></div>
+    <div class="card">
+      <div class="card-hed">Add document</div>
+      <div class="g2">
+        <div class="field"><label>Document type</label>
+          <select id="kb-type">
+            <option value="resume">Resume</option>
+            <option value="coverletter">Cover Letter</option>
+            <option value="writing">Writing Sample</option>
+            <option value="bio">Bio / About</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="field"><label>Label</label><input type="text" id="kb-label" placeholder="e.g. Resume 2026, Populous Cover Letter"/></div>
+      </div>
+      <div class="field"><label>Paste full document text</label><textarea id="kb-text" style="min-height:180px" placeholder="Paste the full text of your resume, cover letter, or writing sample. The AI will study your sentence structure, word choices, rhythm, and voice and apply it to every letter."></textarea></div>
+      <div class="brow">
+        <button class="btn-run" onclick="addKBDoc()">Save to Knowledge Base</button>
+        <input type="file" id="kb-file-input" accept=".txt" style="display:none" onchange="handleKBFile(event)"/>
+        <button class="btn-out" onclick="document.getElementById('kb-file-input').click()">Upload .txt file</button>
+      </div>
+      <div class="alert" id="kb-alert"></div>
+    </div>
+    <div id="kb-list" style="margin-top:4px"></div>
   </div>
 
   <!-- PROFILE -->
@@ -631,6 +697,8 @@ function init() {
   document.getElementById('mdate').textContent = new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
   document.getElementById('tr-date').value = new Date().toISOString().split('T')[0];
   load();
+  loadKB();
+  renderKB();
   renderTracker();
   updateSidebarStats();
   // test API connection immediately
@@ -767,13 +835,45 @@ async function runFull() {
 
     sd(1,'done'); sd(2,'done'); sd(3,'run'); stext.textContent='Writing in your voice…';
     const letter=await callClaude(
-      `You write cover letters for Kristina Lenkowsky. Voice rules absolute: zero filler, zero clichés, NEVER "I am passionate about" or "I would be thrilled." Every sentence earns its place. Opens by signaling she understands the role — NOT a compliment. Closes with day one. 3–4 tight paragraphs. No salutation, no sign-off. Tone: ${TONES[tone]}\nPROFILE:\n${PROFILE}`,
+      `You write cover letters for Kristina Lenkowsky. You are writing AS her, not ABOUT her.
+
+STRUCTURE: 3 paragraphs only. No salutation. No sign-off. No subject line.
+
+PARAGRAPH 1 — Open on what the job actually requires. Not a compliment to the firm. Not "I am writing to apply." Signal immediately that she already thinks like someone in this role.
+
+PARAGRAPH 2 — One or two specific proof points from her background that directly answer the role's real need. Named companies, real outcomes, concrete situations. No vague claims.
+
+PARAGRAPH 3 — What she does on day one. Specific to this company. Not what she hopes to learn or contribute — what she will do.
+
+BANNED WORDS AND PHRASES — if any of these appear, rewrite that sentence entirely:
+"I am passionate", "I am excited", "I would be thrilled", "I am eager", "I have always", "leverage" (as verb), "delve", "furthermore", "additionally", "it is worth noting", "in conclusion", "dynamic", "fast-paced", "results-driven", "proven track record", "detail-oriented", "team player", "synergy", "robust", "seamlessly", "spearheaded", "utilized", "facilitated"
+
+BANNED PUNCTUATION AND STRUCTURE:
+- No em-dashes (—) anywhere
+- No bullet points
+- No numbered lists
+- No parenthetical asides
+- No rhetorical questions
+- No sentences starting with "Having" or "Being" or "As a"
+- No sentences over 30 words
+- No two consecutive sentences starting with the same word
+- No paragraph starting with "I"
+
+TONE: ${TONES[tone]}
+PROFILE: ${PROFILE}${buildVoiceContext()}`,
       `Cover letter for ${rt} at ${co}.\nWhat they need: ${intel.realNeed}\nRole power: ${intel.powerPosition}\nUnique angle: ${intel.uniqueAngle}\nOpening: ${pos.hookLine}\nClosing: ${pos.closingLine}\nBroadway bridge: ${pos.keyBridge}\nKeywords: ${(intel.keywords||[]).join(', ')}\n${em?'Emphasize: '+em:''}\nPosting: ${jp.substring(0,1500)}\nFirst paragraph to last only.`
     );
 
-    sd(3,'done'); sd(4,'done');
+    sd(3,'done'); sd(4,'run'); stext.textContent='Scrubbing AI patterns…';
+
+    const scrubbed = await callClaude(
+      `You are an editor eliminating AI-generated writing patterns. Fix ONLY sentences that: contain banned words (passionate, excited, thrilled, eager, leverage, delve, furthermore, additionally, dynamic, proven track record, spearheaded, utilized, seamlessly, robust, facilitate, synergy), use an em-dash, exceed 30 words, start a paragraph with "I", have two consecutive sentences starting with the same word, start with "Having"/"Being"/"As a", or sound generic and AI-polished. Rewrite those sentences in Kristina's voice: direct, specific, no filler. Leave all passing sentences exactly as written. Return letter text only, no commentary.`,
+      `LETTER TO SCRUB:\n${letter}`
+    );
+
+    sd(4,'done');
     renderIntel(intel,pos,co,rt);
-    document.getElementById('lout').innerHTML=`<button class="copy-lnk" onclick="doCopy('lout')">copy</button>${esc(letter)}`;
+    document.getElementById('lout').innerHTML=`<button class="copy-lnk" onclick="doCopy('lout')">copy</button>${esc(scrubbed)}`;
     spin.className='spin'; btn.disabled=false;
     stext.textContent=`Observation complete — ${co} · ${rt}`;
 
@@ -785,7 +885,7 @@ async function runFull() {
         co, role:rt, stage:'applied',
         dateApplied: new Date().toISOString().split('T')[0],
         events:[{type:'Applied',date:new Date().toISOString().split('T')[0],note:'Application generated via Intelligence Pass'}],
-        letter, intel: JSON.stringify(intel)
+        letter: scrubbed, intel: JSON.stringify(intel)
       });
       save();
       updateSidebarStats();
@@ -841,7 +941,7 @@ async function regenLetter(){
   const tone=document.getElementById('tone').value;
   try{
     const letter=await callClaude(
-      `You write cover letters for Kristina Lenkowsky. Voice: direct, confident, specific. Zero filler, zero clichés. 3–4 tight paragraphs. No salutation, no sign-off. Tone: ${TONES[tone]}\nPROFILE:\n${PROFILE}`,
+      `You write cover letters for Kristina Lenkowsky. You are writing AS her, not ABOUT her. 3 paragraphs only. No salutation. No sign-off. BANNED: em-dashes, bullet points, "passionate", "excited", "thrilled", "leverage", "delve", "furthermore", "additionally", "dynamic", "proven track record", "spearheaded", "utilized", "seamlessly". No sentence over 30 words. No paragraph starting with "I". No two consecutive sentences starting with the same word. Tone: ${TONES[tone]}\nPROFILE:\n${PROFILE}${buildVoiceContext()}`,
       `Cover letter for ${lastRole} at ${lastCo}. Context: ${lastPosting.substring(0,1500)}\nFirst paragraph to last only.`
     );
     document.getElementById('lout').innerHTML=`<button class="copy-lnk" onclick="doCopy('lout')">copy</button>${esc(letter)}`;
@@ -1037,6 +1137,217 @@ function updateSidebarStats(){
   document.getElementById('stat-interview').textContent=interview;
   document.getElementById('stat-offer').textContent=offer;
 }
+
+// ── KNOWLEDGE BASE ──
+let kbDocs = [];
+
+function loadKB() {
+  try {
+    const d = localStorage.getItem('kl_kb');
+    if(d) kbDocs = JSON.parse(d);
+  } catch(e) {}
+}
+
+function saveKB() {
+  try {
+    localStorage.setItem('kl_kb', JSON.stringify(kbDocs));
+    flashSaved();
+  } catch(e) {}
+}
+
+function addKBDoc() {
+  const type = document.getElementById('kb-type').value;
+  const label = document.getElementById('kb-label').value.trim();
+  const text = document.getElementById('kb-text').value.trim();
+  if(!label || !text) {
+    setAlert('kb-alert', 'Label and document text are both required.', 'err');
+    return;
+  }
+  kbDocs.unshift({ id: Date.now(), type, label, text, added: new Date().toISOString().split('T')[0] });
+  saveKB();
+  renderKB();
+  document.getElementById('kb-label').value = '';
+  document.getElementById('kb-text').value = '';
+  setAlert('kb-alert', 'Saved to Knowledge Base. The AI will use this in all future generations.', 'ok');
+  setTimeout(() => { document.getElementById('kb-alert').style.display = 'none'; }, 3000);
+}
+
+function handleKBFile(event) {
+  const file = event.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    document.getElementById('kb-text').value = e.target.result;
+    document.getElementById('kb-label').value = file.name.replace('.txt','');
+  };
+  reader.readAsText(file);
+}
+
+function removeKBDoc(id) {
+  kbDocs = kbDocs.filter(d => d.id !== id);
+  saveKB();
+  renderKB();
+}
+
+function renderKB() {
+  const list = document.getElementById('kb-list');
+  if(!kbDocs.length) {
+    list.innerHTML = '<div class="output-empty" style="padding:8px 0;font-style:italic;font-size:12px">No documents yet. Add your resume and cover letters above.</div>';
+    return;
+  }
+  const typeLabels = { resume:'Resume', coverletter:'Cover Letter', writing:'Writing Sample', bio:'Bio', other:'Other' };
+  list.innerHTML = kbDocs.map(doc => `
+    <div class="card" style="margin-bottom:10px">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px">
+        <div style="flex:1">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+            <span style="font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);border:0.5px solid var(--rule);padding:2px 7px;border-radius:2px">${typeLabels[doc.type]||doc.type}</span>
+            <span style="font-size:12px;font-weight:500;color:var(--black)">${esc(doc.label)}</span>
+            <span style="font-size:10px;color:var(--muted)">Added ${doc.added}</span>
+          </div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.6;font-weight:300;max-height:60px;overflow:hidden">${esc(doc.text.substring(0,200))}${doc.text.length>200?'…':''}</div>
+        </div>
+        <button class="btn-danger" onclick="removeKBDoc(${doc.id})" style="flex-shrink:0">Remove</button>
+      </div>
+    </div>`).join('');
+}
+
+function buildVoiceContext() {
+  if(!kbDocs.length) return '';
+  const resume = kbDocs.filter(d => d.type === 'resume').map(d => d.text).join('\n\n');
+  const letters = kbDocs.filter(d => d.type === 'coverletter').map(d => d.text).join('\n\n---\n\n');
+  const writing = kbDocs.filter(d => d.type === 'writing' || d.type === 'bio' || d.type === 'other').map(d => d.text).join('\n\n');
+  let ctx = '\n\nVOICE REFERENCE DOCUMENTS — study these carefully to match her exact writing style, sentence structure, rhythm, word choices, and tone. Mirror how she writes, not how she is described:\n';
+  if(resume) ctx += '\n[RESUME]\n' + resume.substring(0, 1500);
+  if(letters) ctx += '\n\n[COVER LETTERS — primary voice reference]\n' + letters.substring(0, 2000);
+  if(writing) ctx += '\n\n[OTHER WRITING]\n' + writing.substring(0, 800);
+  ctx += '\n\nCRITICAL VOICE RULES extracted from her writing:\n- NO em-dashes (never use —)\n- NO AI filler words: furthermore, delve, leverage (as verb), it is worth noting, in conclusion, I am excited to, I would be thrilled\n- NO bullet points inside the letter\n- NO repetitive sentence openers\n- Match her actual paragraph length and sentence rhythm exactly\n- Use her specific word choices and phrasing patterns from the samples above';
+  return ctx;
+}
+
+
+// ── URL FETCH + AUTOFILL ──
+async function fetchJobURL() {
+  const url = document.getElementById('job-url').value.trim();
+  if(!url) return;
+  const btn = document.getElementById('url-btn');
+  const status = document.getElementById('url-status');
+  btn.disabled = true;
+  btn.textContent = 'Fetching…';
+  status.textContent = 'Reading job posting…';
+  status.style.color = 'var(--muted)';
+
+  try {
+    // Use allorigins proxy to bypass CORS
+    const proxyURL = 'https://api.allorigins.win/get?url=' + encodeURIComponent(url);
+    const r = await fetch(proxyURL);
+    const d = await r.json();
+    if(!d.contents) throw new Error('Could not read page');
+
+    // Strip HTML tags and clean up whitespace
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(d.contents, 'text/html');
+
+    // Remove scripts, styles, nav, footer, header
+    ['script','style','nav','footer','header','aside'].forEach(tag => {
+      doc.querySelectorAll(tag).forEach(el => el.remove());
+    });
+
+    // Try to find the main job content
+    const selectors = [
+      '[class*="job-description"]','[class*="jobDescription"]','[class*="job_description"]',
+      '[class*="description"]','[id*="job-description"]','[id*="jobDescription"]',
+      'main','article','[role="main"]','.content','.job-content','#content'
+    ];
+    let text = '';
+    for(const sel of selectors) {
+      const el = doc.querySelector(sel);
+      if(el && el.innerText && el.innerText.length > 200) {
+        text = el.innerText; break;
+      }
+    }
+    if(!text) text = doc.body.innerText || '';
+
+    // Clean up whitespace
+    text = text.replace(/\t/g,' ').replace(/\n{3,}/g,'\n\n').replace(/ {2,}/g,' ').trim();
+
+    if(text.length < 100) throw new Error('Could not extract job text from this page');
+
+    // Autofill the posting textarea
+    document.getElementById('jp').value = text;
+
+    // Try to extract company and role from page title or content
+    const pageTitle = doc.querySelector('title')?.textContent || '';
+    const h1 = doc.querySelector('h1')?.textContent || '';
+
+    // Smart autofill of company + role fields
+    await autoFillFromText(text, pageTitle, h1, url);
+
+    status.textContent = '✓ Job posting loaded — ' + text.length + ' characters extracted';
+    status.style.color = '#306040';
+
+  } catch(e) {
+    // Fallback: ask Claude to help parse if direct fetch fails
+    status.textContent = 'Could not auto-fetch this page. Paste the job text manually below.';
+    status.style.color = '#904040';
+    console.log('URL fetch error:', e.message);
+  }
+
+  btn.disabled = false;
+  btn.textContent = 'Fetch Posting';
+}
+
+async function autoFillFromText(text, pageTitle, h1, url) {
+  // Only autofill if fields are empty
+  const coField = document.getElementById('co');
+  const rtField = document.getElementById('rt');
+  if(coField.value && rtField.value) return;
+
+  try {
+    const result = await callClaude(
+      'You extract job posting metadata. Return only valid JSON. Be concise.',
+      `Extract company name and role title from this job posting. Return JSON: {"company":"","role":""}
+Page title: ${pageTitle}
+H1: ${h1}
+URL: ${url}
+First 500 chars: ${text.substring(0,500)}`
+    );
+    const cleaned = result.replace(/\`\`\`json|\`\`\`/g,'').trim();
+    const parsed = JSON.parse(cleaned);
+    if(parsed.company && !coField.value) coField.value = parsed.company;
+    if(parsed.role && !rtField.value) rtField.value = parsed.role;
+  } catch(e) {
+    // silent fail — fields just stay empty for manual fill
+  }
+}
+
+function handleURLPaste(event) {
+  // Auto-trigger fetch when URL is pasted
+  setTimeout(() => {
+    const val = document.getElementById('job-url').value.trim();
+    if(val.startsWith('http')) fetchJobURL();
+  }, 100);
+}
+
+function handlePostingPaste(event) {
+  // When text is pasted into the posting field, try to autofill company/role if empty
+  setTimeout(async () => {
+    const text = document.getElementById('jp').value.trim();
+    if(text.length > 200) {
+      await autoFillFromText(text, '', '', '');
+    }
+  }, 200);
+}
+
+// Make all inputs and textareas explicitly allow paste
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('input, textarea, select').forEach(el => {
+    el.removeAttribute('readonly');
+    el.style.userSelect = 'text';
+    el.style.webkitUserSelect = 'text';
+  });
+});
+
 </script>
 </body>
 </html>

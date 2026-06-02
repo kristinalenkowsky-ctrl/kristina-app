@@ -629,11 +629,47 @@ window.addEventListener('load', ()=>{
 
 function init() {
   document.getElementById('mdate').textContent = new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
-  // set today as default date
   document.getElementById('tr-date').value = new Date().toISOString().split('T')[0];
   load();
   renderTracker();
   updateSidebarStats();
+  // test API connection immediately
+  testAPI();
+}
+
+async function testAPI() {
+  const stext = document.getElementById('savetext');
+  stext.textContent = 'Testing connection…';
+  try {
+    const r = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version':'2023-06-01',
+        'anthropic-dangerous-direct-browser-access':'true'
+      },
+      body: JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:10,
+        messages:[{role:'user',content:'Hi'}]
+      })
+    });
+    const d = await r.json();
+    console.log('API test response:', JSON.stringify(d).substring(0,200));
+    if(d.error) {
+      stext.textContent = 'API error: ' + d.error.type + ' — ' + d.error.message;
+      stext.style.color = '#e07070';
+    } else {
+      stext.textContent = 'Connected ✓';
+      stext.style.color = '#90d090';
+      setTimeout(()=>{ stext.textContent=''; stext.style.color=''; }, 3000);
+    }
+  } catch(e) {
+    console.error('API test failed:', e);
+    stext.textContent = 'Connection failed: ' + e.message;
+    stext.style.color = '#e07070';
+  }
 }
 
 // ── NAV ──
